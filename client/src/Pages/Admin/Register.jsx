@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logoImage from "./assets/images/logo1.png";
-function adminRegisterPage() {
+
+function AdminRegisterPage() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [creds, setcreds] = useState({
     name: "",
@@ -11,7 +12,6 @@ function adminRegisterPage() {
     role: "",
   });
 
-  // Toggle password visibility
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
     setIsPasswordVisible(!isPasswordVisible);
@@ -24,12 +24,16 @@ function adminRegisterPage() {
     e.preventDefault();
 
     const formData = {
-      name: e.target.inputName.value,
       username: e.target.inputUsername.value,
-      email: e.target.inputEmailAddress.value,
       password: e.target.inputChoosePassword.value,
-      phone: e.target.inputPhone.value,
       role: e.target.role.value,
+      profile: {
+        name: e.target.inputName.value,
+        contact: {
+          email: e.target.inputEmailAddress.value,
+          phone: e.target.inputPhone.value,
+        }
+      }
     };
 
     try {
@@ -92,7 +96,7 @@ function adminRegisterPage() {
                         Username
                       </label>
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
                         id="inputUsername"
                         placeholder="Jhon"
@@ -135,11 +139,10 @@ function adminRegisterPage() {
                           className="input-group-text bg-transparent"
                         >
                           <i
-                            className={`bi ${
-                              isPasswordVisible
-                                ? "bi-eye-fill"
-                                : "bi-eye-slash-fill"
-                            }`}
+                            className={`bi ${isPasswordVisible
+                              ? "bi-eye-fill"
+                              : "bi-eye-slash-fill"
+                              }`}
                           ></i>
                         </a>
                       </div>
@@ -201,4 +204,4 @@ function adminRegisterPage() {
     </>
   );
 }
-export default adminRegisterPage;
+export default AdminRegisterPage;
